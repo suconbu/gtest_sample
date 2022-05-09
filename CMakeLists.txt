@@ -20,8 +20,11 @@ add_executable(${PROJECT_NAME}
 
 target_link_libraries(${PROJECT_NAME} gtest_main)
 
-add_test(NAME test COMMAND ${PROJECT_NAME})
 enable_testing()
+
+# Replacement for "add_test(NAME test COMMAND ${PROJECT_NAME})"
+include(GoogleTest)
+gtest_discover_tests(${PROJECT_NAME})
 
 if(MSVC)
     target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX)
